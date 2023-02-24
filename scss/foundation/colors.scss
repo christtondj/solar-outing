@@ -1,0 +1,14 @@
+@mixin theme($name, $color) {
+    $primary: $color;
+    $secondary: lighten(adjust-hue($color, 20), 10%);
+  
+    .#{$name} {
+      .element {
+        color: $primary;
+      }
+  
+      .other-element {
+        background: $secondary;
+      }
+    }
+  }
