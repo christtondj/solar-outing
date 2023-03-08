@@ -1,0 +1,214 @@
+/*
+Media Queries Mixins
+*/
+/*
+Animation Mixins
+*/
+/* Define the animation using keyframes */
+@keyframes isShortened {
+  from {
+    height: 350%;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes isEdge {
+  from {
+    transform: translateY(45%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes isCentered {
+  from {
+    transform: translateY(40%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes isReversed {
+  from {
+    transform: translateY(-40%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes scale-image {
+  from {
+    transform: scale(1.5);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes scale-loader {
+  from {
+    transform: scale(0.23);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -110%, 0);
+  }
+}
+@keyframes revealOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.main-wrapper .loader {
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.main-wrapper .loader #percentage {
+  position: absolute;
+  font-size: 0.9375vw;
+  line-height: 1.1719vw;
+  font-family: Helvetica, sans-serif;
+  color: #ffffff;
+  z-index: 1500;
+  will-change: transform;
+  overflow: hidden;
+}
+.main-wrapper .loader .loader-flex {
+  height: 561vh;
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  will-change: transform;
+  transform: scale(0.24);
+  z-index: 1000;
+}
+.main-wrapper .loader .loader-flex .loader-column {
+  height: 100%;
+  padding: 0 7vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  will-change: transform;
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner {
+  height: 350%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  flex-grow: 0;
+  will-change: transform;
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner .loader-image-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner .loader-image-wrapper .loader-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  will-change: transform;
+  transform: scale(1.5);
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner .loader-image-wrapper .is-middle {
+  animation: scale-image 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 2s forwards;
+  transform-origin: center;
+  animation-fill-mode: forwards;
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner.is-reversed {
+  transform: translateY(-40%);
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner.is-reversed-animate {
+  animation: isReversed 3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards, isShortened 3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  animation-delay: 0.32s, 0.15s;
+  animation-fill-mode: forwards;
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner.is-centered {
+  transform: translateY(40%);
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner.is-centered-animate {
+  animation: isCentered 3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards, isShortened 1.5s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  animation-delay: 0s, 0.9s;
+  animation-fill-mode: forwards;
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner.is-edge {
+  transform: translateY(45%);
+}
+.main-wrapper .loader .loader-flex .loader-column .loader-column-inner.is-edge-animate {
+  animation: isEdge 3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards, isShortened 3s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+  animation-delay: 0.15s, 0.35s;
+  animation-fill-mode: forwards;
+}
+.main-wrapper .loader .loader-flex .loader-column.is-alt {
+  justify-content: flex-end;
+}
+.main-wrapper .loader .loader-scale {
+  animation: scale-loader 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) 2s forwards;
+  transform-origin: center;
+  animation-fill-mode: forwards;
+}
+.main-wrapper .loader .slide-up {
+  animation: slideUp 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.5s, revealOut 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s;
+  animation-fill-mode: forwards;
+}
+
+/*#load {
+      z-index: 9996;
+      position: fixed;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center
+  }
+
+  #load-bg,.iss-w {
+      position: absolute;
+      background: #141414
+  }
+
+  #load-no {
+      position: relative;
+      letter-spacing: .05em;
+      overflow: hidden
+  }
+
+  #load-no div {
+      will-change: transform;
+      transform: translate3d(0,300%,0)
+  }
+  .iss-w {
+      z-index: 9999;
+      position: fixed;
+      text-align: center;
+      color: #fff;
+      font-family: Arial;
+      font-size: 16px
+  }
+
+
+.loading-text {
+  transform: translate3d(0, -110%, 0);
+}*/
+body {
+  background-color: #141414;
+  color: #ffffff;
+}
+
+/*# sourceMappingURL=style.css.map */
